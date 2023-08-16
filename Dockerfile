@@ -1,6 +1,6 @@
 FROM jxxghp/moviepilot:latest
 RUN apt-get update \
-    && apt-get -y install gnupg \
+    && apt-get -y install gnupg git \
     && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get -y install nodejs \
     && apt-get install -y build-essential \
