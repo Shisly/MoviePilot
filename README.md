@@ -1,3 +1,11 @@
+# 免责声明
+
+**请勿**在任何国内平台宣传 MoviePilot，MoviePilot 仅用于学习交流使用。
+**请勿**将 MoviePilot 用于商业用途。
+**请勿**将 MoviePilot 制作为视频内容，于境内视频网站(版权利益方)传播。
+**请勿**将 MoviePilot 用于任何违反法律法规的行为。
+**请勿**将本仓库教程在国内任何平台宣传，本仓库**只**作为官方仓库部署教程补充。
+
 # 部署实例
 
 ## docker-cli 实例
@@ -26,6 +34,7 @@ docker run -itd \
     -e 'DOWNLOAD_TV_PATH=/media/downloads/tv' \
     -e 'DOWNLOAD_SUBTITLE=false' \
     -e 'DOWNLOAD_CATEGORY=false' \
+    -e 'DOWNLOADER_MONITOR=true' \
     -e 'REFRESH_MEDIASERVER=true' \
     -e 'SCRAP_METADATA=true' \
     -e 'TORRENT_TAG=MOVIEPILOT' \
@@ -86,6 +95,8 @@ docker run -itd \
 ## UnRaid 配置模板
 
 [Unraid-MoviePilot.xml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/Unraid-MoviePilot.xml) by 群友支持
+
+将此文件放入 `/boot/config/plugins/dockerMan/templates-user` 文件夹下即可使用
 
 # 目录挂载解释
 

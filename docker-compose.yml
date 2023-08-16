@@ -42,6 +42,8 @@ services:
             - 'DOWNLOAD_SUBTITLE=false'
             # 下载二级分类开关
             - 'DOWNLOAD_CATEGORY=false'
+            # 下载器监控
+            - 'DOWNLOADER_MONITOR=true'
             # 入库刷新媒体库
             - 'REFRESH_MEDIASERVER=true'
             # 刮削入库的媒体文件
