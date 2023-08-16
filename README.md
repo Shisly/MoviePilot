@@ -135,6 +135,8 @@ moviepilot目录挂载及相关环境变量设置：
 -v ./media/downloads:/media/downloads
 ```
 
+![](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/img/2D894EE1-9B39-4F74-BDDF-E5C6E4559456.jpeg)
+
 ## 实例二 by 群友支持
 
 ![](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/img/hardlink_v_2.jpg)
