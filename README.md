@@ -98,8 +98,13 @@ docker run -itd \
 
 将此文件放入 `/boot/config/plugins/dockerMan/templates-user` 文件夹下即可使用，或者使用下面一键命令。
 
+**Github源**
 ```bash
 curl -sL https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/Unraid-MoviePilot.xml -o /boot/config/plugins/dockerMan/templates-user/MoviePilot.xml
+```
+**国内加速源**
+```bash
+curl -sL https://ghproxy.com/https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/Unraid-MoviePilot.xml -o /boot/config/plugins/dockerMan/templates-user/MoviePilot.xml
 ```
 
 # 目录挂载解释
