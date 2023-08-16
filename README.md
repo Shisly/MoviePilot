@@ -139,7 +139,7 @@ moviepilot目录挂载及相关环境变量设置：
 
 ![](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/img/hardlink_v_2.jpg)
 
-[docker-compose.yml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/docker-compose-2.yml)实例。
+[docker-compose.yml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/docker-compose-2.yml) 实例
 
 # MoviePilot 图标地址
 
