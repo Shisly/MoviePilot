@@ -1,4 +1,14 @@
-目录挂载解释
+# 部署实例
+
+## docker-compose 实例
+
+[docker-compose.yml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/docker-compose.yml)
+
+## UnRaid 配置模板
+
+[Unraid-MoviePilot.xml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/Unraid-MoviePilot.xml)
+
+# 目录挂载解释
 
 ```bash
 宿主机文件结构推荐：
@@ -24,7 +34,3 @@ moviepilot目录挂载及相关环境变量设置：
 下载器目录挂载：
 -v ./media/downloads:/media/downloads
 ```
-
-docker-compose 实例
-
-https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/docker-compose.yml
