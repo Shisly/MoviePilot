@@ -133,3 +133,7 @@ moviepilot目录挂载及相关环境变量设置：
 ## 实例二 by 群友支持
 
 ![](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/img/hardlink_v_2.jpg)
+
+# MoviePilot 图标地址
+
+[https://raw.githubusercontent.com/jxxghp/MoviePilot-Frontend/main/public/logo.png](https://raw.githubusercontent.com/jxxghp/MoviePilot-Frontend/main/public/logo.png)
