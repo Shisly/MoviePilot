@@ -4,6 +4,7 @@
 envsubst '${NGINX_PORT}' < /etc/nginx/nginx.template.conf > /etc/nginx/nginx.conf
 # 自动更新
 if [ "${MOVIEPILOT_AUTO_UPDATE}" = "true" ]; then
+    cd /
     git clone -b main https://github.com/jxxghp/MoviePilot.git /tmp/app
     pip install --upgrade pip
     pip install -r /tmp/app/requirements.txt
