@@ -20,8 +20,6 @@ services:
             - 'TZ=Asia/Shanghai'
             # 重启更新
             - 'MOVIEPILOT_AUTO_UPDATE=true'
-            # 重启更新是否使用国内加速
-            - 'MOVIEPILOT_CN_UPDATE=false'
             # WEB服务端口
             - 'NGINX_PORT=3000'
             # 超级管理员用户名

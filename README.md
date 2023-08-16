@@ -22,7 +22,6 @@ docker run -itd \
     -e 'UMASK=022' \
     -e 'TZ=Asia/Shanghai' \
     -e 'MOVIEPILOT_AUTO_UPDATE=true' \
-    -e 'MOVIEPILOT_CN_UPDATE=false' \
     -e 'NGINX_PORT=3000' \
     -e 'SUPERUSER=admin' \
     -e 'SUPERUSER_PASSWORD=password' \

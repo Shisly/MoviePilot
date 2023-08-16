@@ -18,7 +18,6 @@ services:
       - PGID=100  # 运行程序用户的gid，默认0
       - UMASK=000 # 掩码权限，默认000，可以考虑设置为022
       - MOVIEPILOT_AUTO_UPDATE=true #重启更新，true/false，默认true
-      - MOVIEPILOT_CN_UPDATE=false #重启更新是否使用国内加速，true/false，默认false 
       - NGINX_PORT= #WEB服务端口，默认3000，可自行修改，但不能为3001
       - SUPERUSER=  #超级管理员用户名，默认admin，安装后使用该用户登录后台管理界面
       - SUPERUSER_  # 超级管理员初始密码，默认password，建议修改为复杂密码
