@@ -8,13 +8,15 @@ if [ "${MOVIEPILOT_AUTO_UPDATE}" = "true" ]; then
     git clone -b main --depth=1 https://github.com/jxxghp/MoviePilot.git /tmp/app
     pip install --upgrade pip
     pip install -r /tmp/app/requirements.txt
+    ACTION_ID=$(curl -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.v3+json" \
+        https://api.github.com/repos/${GITHUB_REPO}/actions/workflows | jq '.workflows[] | select(.name == "Build moviepilot frontend") | .id')
     curl -X POST \
         -H "Authorization: token ${GITHUB_TOKEN}" \
         -H "Accept: application/vnd.github.v3+json" \
-        https://api.github.com/repos/DDS-Derek/MoviePilot/actions/workflows/66426464/dispatches \
+        https://api.github.com/repos/${GITHUB_REPO}/actions/workflows/${ACTION_ID}/dispatches \
         -d '{"ref":"docker"}'
-    sleep 180
-    git clone -b web --depth=1 https://github.com/DDS-Derek/MoviePilot.git /tmp/web
+    sleep 150
+    git clone -b web --depth=1 https://github.com/${GITHUB_REPO}.git /tmp/web
     rm -rf /app
     mv /tmp/app /app
     rm -rf /public
