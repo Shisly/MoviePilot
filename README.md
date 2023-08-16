@@ -104,8 +104,9 @@ curl -sL https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/Unraid-Movi
 
 # 目录挂载解释
 
+## 方式1
+
 ```bash
-宿主机文件结构推荐：
 media
 ├── downloads
 │   ├── movies
@@ -128,3 +129,7 @@ moviepilot目录挂载及相关环境变量设置：
 下载器目录挂载：
 -v ./media/downloads:/media/downloads
 ```
+
+## 方式2
+
+[](./img/hardlink_v_2.jpg)
