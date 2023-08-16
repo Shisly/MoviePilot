@@ -1,7 +1,8 @@
 version: '3.8'
 
-#自用配置，除注释外，其余参数请自行增删改，参考官方项目 https://github.com/jxxghp/MoviePilot#配置 
-#在插件内安装目录监控，监控 /F/downloads 等挂载进容器的下载目录，转移模式选择兼容模式
+#请修改文件名为docker-compose.yml
+#自用配置，注意注释内容，参数请自行增删改，参考官方项目 https://github.com/jxxghp/MoviePilot#配置 
+#插件安装目录监控，监控 /F/downloads 等挂载进容器后的下载目录，转移模式选择兼容模式
 
 services:
   moviepilot:
