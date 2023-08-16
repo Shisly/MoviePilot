@@ -90,21 +90,21 @@ docker run -itd \
 
 ## docker-compose 实例
 
-[docker-compose.yml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/docker-compose.yml)
+[docker-compose.yml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/examples/docker-compose.yml)
 
 ## UnRaid 配置模板
 
-[Unraid-MoviePilot.xml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/Unraid-MoviePilot.xml) by 群友支持
+[Unraid-MoviePilot.xml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/examples/Unraid-MoviePilot.xml) by 群友支持
 
 将此文件放入 `/boot/config/plugins/dockerMan/templates-user` 文件夹下即可使用，或者使用下面一键命令。
 
 **Github源**
 ```bash
-curl -sL https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/Unraid-MoviePilot.xml -o /boot/config/plugins/dockerMan/templates-user/MoviePilot.xml
+curl -sL https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/examples/Unraid-MoviePilot.xml -o /boot/config/plugins/dockerMan/templates-user/MoviePilot.xml
 ```
 **国内加速源**
 ```bash
-curl -sL https://ghproxy.com/https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/Unraid-MoviePilot.xml -o /boot/config/plugins/dockerMan/templates-user/MoviePilot.xml
+curl -sL https://ghproxy.com/https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/examples/Unraid-MoviePilot.xml -o /boot/config/plugins/dockerMan/templates-user/MoviePilot.xml
 ```
 
 # 目录挂载解释
@@ -139,7 +139,7 @@ moviepilot目录挂载及相关环境变量设置：
 
 ![](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/img/hardlink_v_2.jpg)
 
-[docker-compose.yml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/docker-compose-2.yml) 实例
+[docker-compose.yml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/examples/docker-compose-2.yml) 实例
 
 # MoviePilot 图标地址
 
