@@ -46,6 +46,7 @@ RUN apt-get update \
         busybox \
         dumb-init \
         git \
+        jq \
         gnupg \
     && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get -y install nodejs \
