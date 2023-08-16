@@ -104,7 +104,7 @@ curl -sL https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/Unraid-Movi
 
 # 目录挂载解释
 
-## 方式1
+## 实例一
 
 ```bash
 media
@@ -130,6 +130,6 @@ moviepilot目录挂载及相关环境变量设置：
 -v ./media/downloads:/media/downloads
 ```
 
-## 方式2
+## 实例二 by 群友支持
 
 ![](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/img/hardlink_v_2.jpg)
