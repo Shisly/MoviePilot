@@ -1,0 +1,1 @@
+.person-card{background-image:linear-gradient(45deg,rgb(var(--v-theme-background)),rgb(var(--v-theme-surface)) 60%)}.person-card:hover{background-image:linear-gradient(45deg,rgb(var(--v-theme-background)),rgb(var(--v-custom-background)) 60%)}
