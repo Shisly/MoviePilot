@@ -114,9 +114,7 @@ curl -sL https://ghproxy.com/https://raw.githubusercontent.com/DDS-Derek/MoviePi
     # 首先挂载目录，以F盘为例，只提需要注意的参数，其余参数均按照项目README填写
 
     volumes:
-      - /F/media:/F/media         # 挂载媒体库
-      - /F/downloads:/F/downloads # 挂载下载器目录
-        #或者直接挂载磁盘根目录 - /F:/F
+      - /F/:/F/ #建议直接挂载磁盘，否则-1报错
     
     environment:
       PUID: 1000
