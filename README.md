@@ -85,7 +85,7 @@ docker run -itd \
 
 ## UnRaid 配置模板
 
-[Unraid-MoviePilot.xml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/Unraid-MoviePilot.xml)
+[Unraid-MoviePilot.xml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/Unraid-MoviePilot.xml) by 群友支持
 
 # 目录挂载解释
 
