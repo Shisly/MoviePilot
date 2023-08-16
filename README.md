@@ -132,4 +132,4 @@ moviepilot目录挂载及相关环境变量设置：
 
 ## 方式2
 
-[](./img/hardlink_v_2.jpg)
+![](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/img/hardlink_v_2.jpg)
