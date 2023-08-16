@@ -96,7 +96,11 @@ docker run -itd \
 
 [Unraid-MoviePilot.xml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/Unraid-MoviePilot.xml) by 群友支持
 
-将此文件放入 `/boot/config/plugins/dockerMan/templates-user` 文件夹下即可使用
+将此文件放入 `/boot/config/plugins/dockerMan/templates-user` 文件夹下即可使用，或者使用下面一键命令。
+
+```bash
+curl -sL https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/Unraid-MoviePilot.xml -o /boot/config/plugins/dockerMan/templates-user/MoviePilot.xml
+```
 
 # 目录挂载解释
 
