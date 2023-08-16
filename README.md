@@ -112,21 +112,23 @@ curl -sL https://ghproxy.com/https://raw.githubusercontent.com/DDS-Derek/MoviePi
 ```yaml
 # by 群友支持
 
-    # 首先挂载目录，以F盘为例，只提需要注意的参数，其余参数均按照项目README填写。
+    # 首先挂载目录，以F盘为例，只提需要注意的参数，其余参数均按照项目README填写
+
     volumes:
-      - /F/media:/mnt/F/media  #挂载媒体库
-      - /F/downloads:/mnt/F/downloads #挂载下载器目录
+      - /F/media:/mnt/F/media         # 挂载媒体库
+      - /F/downloads:/mnt/F/downloads # 挂载下载器目录
     
     environment:
       PUID: 1000
       PGID: 1000
       UMASK: 000
-      DOWNLOAD_PATH: 'F:\downloads' #Win下载器目录，必须与外置下载器目录一致，否则推送下载路径报错
-      LIBRARY_PATH: '/mnt/F/media' #媒体目录
-      TRANSFER_TYPE: 'link' #使用硬连接
-      DOWNLOADER_MONITOR: false #设置参数关闭下载器监控，否则会转移两次，路径报错
-      #在插件内安装目录监控，监控 /mnt/F/downloads 等挂载进容器的目录
-      #转移模式选择兼容模式
+      DOWNLOAD_PATH: 'F:\downloads'   # Win下载器目录，必须与外置下载器目录一致，否则推送下载路径报错
+      LIBRARY_PATH: '/mnt/F/media'    # 媒体目录
+      TRANSFER_TYPE: 'link'           # 使用硬连接
+      DOWNLOADER_MONITOR: false       # 设置参数关闭下载器监控，否则会转移两次，路径报错
+
+      # 在插件内安装目录监控，监控 /mnt/F/downloads 等挂载进容器的目录
+      # 转移模式选择兼容模式
 ```
 
 # 目录挂载解释
