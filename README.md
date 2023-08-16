@@ -108,7 +108,7 @@ curl -sL https://ghproxy.com/https://raw.githubusercontent.com/DDS-Derek/MoviePi
 ```
 
 ## Win Docker Desktop 实例
-
+[docker-desktop.yml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/examples/docker-desktop.yml)
 ```yaml
 # by 群友支持
 
