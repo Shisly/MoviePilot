@@ -47,7 +47,7 @@ RUN apt-get update \
         dumb-init \
         git \
         gnupg \
-    && curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - \
+    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get -y install nodejs \
     && \
     if [ "$(uname -m)" = "x86_64" ]; \
