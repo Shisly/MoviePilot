@@ -57,6 +57,7 @@ RUN apt-get update \
     fi \
     && node --version \
     && npm --version \
+    && npm install -g npm \
     && npm install -g yarn \
     && git clone -b main https://github.com/jxxghp/MoviePilot.git /app \
     && git clone -b main https://github.com/jxxghp/MoviePilot-Frontend.git /tmp/web \
@@ -66,8 +67,6 @@ RUN apt-get update \
     && mv /tmp/web/dist /public \
     && cd /app \
     && cp -f /app/nginx.conf /etc/nginx/nginx.template.conf \
-    && cp -f /app/update /usr/local/bin/mp_update \
-    && chmod +x /entrypoint /usr/local/bin/mp_update \
     && mkdir -p ${HOME} \
     && groupadd -r moviepilot -g 911 \
     && useradd -r moviepilot -g moviepilot -d ${HOME} -s /bin/bash -u 911 \
