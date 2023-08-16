@@ -46,14 +46,17 @@ RUN apt-get update \
         busybox \
         dumb-init \
         git \
-        nodejs \
-        npm \
+        gnupg \
+    && curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - \
+    && apt-get -y install nodejs \
     && \
     if [ "$(uname -m)" = "x86_64" ]; \
         then ln -s /usr/lib/x86_64-linux-musl/libc.so /lib/libc.musl-x86_64.so.1; \
     elif [ "$(uname -m)" = "aarch64" ]; \
         then ln -s /usr/lib/aarch64-linux-musl/libc.so /lib/libc.musl-aarch64.so.1; \
     fi \
+    && node --version \
+    && npm --version \
     && npm install -g yarn \
     && git clone -b main https://github.com/jxxghp/MoviePilot.git /app \
     && git clone -b main https://github.com/jxxghp/MoviePilot-Frontend.git /tmp/web \
@@ -77,7 +80,6 @@ RUN apt-get update \
     && echo 'fs.inotify.max_user_watches=5242880' >> /etc/sysctl.conf \
     && echo 'fs.inotify.max_user_instances=5242880' >> /etc/sysctl.conf \
     && locale-gen zh_CN.UTF-8 \
-    && apt-get remove -y build-essential \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf \

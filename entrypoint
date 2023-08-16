@@ -6,6 +6,8 @@ envsubst '${NGINX_PORT}' < /etc/nginx/nginx.template.conf > /etc/nginx/nginx.con
 rm -rf /app
 rm -rf /public
 git clone -b main https://github.com/jxxghp/MoviePilot.git /app
+pip install --upgrade pip
+pip install -r requirements.txt
 git clone -b main https://github.com/jxxghp/MoviePilot-Frontend.git /tmp/web
 cd /tmp/web
 yarn
