@@ -128,8 +128,8 @@ curl -sL https://ghproxy.com/https://raw.githubusercontent.com/DDS-Derek/MoviePi
       TRANSFER_TYPE: 'link'           # 使用硬连接
       DOWNLOADER_MONITOR: false       # 设置参数关闭下载器监控，否则会转移两次，路径报错
 
-      **# 在插件内安装目录监控，监控 /F/downloads 等挂载进容器的下载目录**
-      **# 转移模式选择兼容模式**
+      # 在插件内安装目录监控，监控 /F/downloads 等挂载进容器的下载目录
+      # 转移模式选择兼容模式
 ```
 
 # 目录挂载解释
