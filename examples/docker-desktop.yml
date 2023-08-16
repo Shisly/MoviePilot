@@ -1,31 +1,35 @@
 version: '3.8'
+
+#自用配置，除注释外，其余参数请自行增删改，参考官方项目 https://github.com/jxxghp/MoviePilot#配置 
+#在插件内安装目录监控，监控 /F/downloads 等挂载进容器的下载目录，转移模式选择兼容模式
+
 services:
   moviepilot:
     container_name: moviepilot
     image: 'jxxghp/moviepilot:latest'
     restart: unless-stopped
     ports:
-      - '3001:3001'
+      - '3002:3002'
     environment:
       PUID: 1000
       PGID: 1000
       UMASK: 000
       TZ: Asia/Shanghai
-      NGINX_PORT: 3001
+      NGINX_PORT: 3002
       SUPERUSER: 'admin'
       SUPERUSER_PASSWORD: ''
       API_TOKEN: ''
-      PROXY_HOST: ''
-      DOWNLOAD_PATH: 'F:\下载'
+      PROXY_HOST: 'http://host.docker.internal:7890'
+      DOWNLOAD_PATH: 'F:\downloads'  # Win下载器目录，必须与Win宿主下载器目录一致，否则推送下载路径报错
       DOWNLOAD_CATEGORY: true
       DOWNLOAD_SUBTITLE: true
       REFRESH_MEDIASERVER: true
-      DOWNLOADER_MONITOR: false
+      DOWNLOADER_MONITOR: false # 关闭下载器监控，否则会转移两次，路径报错
       SCRAP_METADATA: true
       TORRENT_TAG: 'MOVIEPILOT'
-      LIBRARY_PATH: '/F/media'
+      LIBRARY_PATH: '/F/media'  # 媒体目录,填写容器内路径
       LIBRARY_CATEGORY: true
-      TRANSFER_TYPE: 'link'
+      TRANSFER_TYPE: 'link' # 使用硬连接
       COOKIECLOUD_HOST: ''
       COOKIECLOUD_KEY: ''
       COOKIECLOUD_PASSWORD: ''
@@ -37,12 +41,12 @@ services:
       TELEGRAM_USERS: 
       TELEGRAM_ADMINS: 
       DOWNLOADER: 'qbittorrent'
-      QB_HOST: '192.168.50.160:8990'
+      QB_HOST: 'host.docker.internal:8990'
       QB_USER: 'admin'
       QB_PASSWORD: 'adminadmin'
       MEDIASERVER: 'jellyfin'
       MEDIASERVER_SYNC_INTERVAL: 6
-      JELLYFIN_HOST: '192.168.50.160:8096'
+      JELLYFIN_HOST: 'host.docker.internal:8096'
       JELLYFIN_API_KEY: ''
       AUTH_SITE: 'iyuu'
       IYUU_SIGN: ''
@@ -50,4 +54,4 @@ services:
     volumes:
       - ./config:/config
       - ./moviepilot:/moviepilot
-      - /F:/F
+      - /F:/F  #建议直接挂载磁盘，否则-1报错
