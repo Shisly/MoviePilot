@@ -95,8 +95,6 @@ docker run -itd \
 
 [Unraid-MoviePilot.xml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/examples/Unraid-MoviePilot.xml) by 群友支持
 
-点击放大图片查看~
-
 1. <img src="https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/img/1.png" alt="步骤01" width="600">
 打开Unraid的Web控制页面，右上角找到“终端”并打开
 
