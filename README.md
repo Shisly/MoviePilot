@@ -1,3 +1,7 @@
-fork本仓库docker分支，然后自己申请github token，打开github action，填写好`GITHUB_TOKEN`和`GITHUB_REPO`环境变量即可实时更新最新代码
+fork本仓库docker分支，然后自己申请`Github Token`，打开仓库`Github Action`
 
-`docker pull ddsderek/moviepilot:full` 1.1G
+启动容器时填写好`GITHUB_TOKEN`和`GITHUB_REPO`环境变量即可实时更新最新代码
+
+`docker pull ddsderek/moviepilot:full` amd64 850M | arm64 1.1G
+
+原理：Git拉取后端代码，安装更新pip库，调用`Github Action`构建前端，然后git拉取构建完成的前端代码，更新完成
