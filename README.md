@@ -95,7 +95,13 @@ docker run -itd \
 
 [Unraid-MoviePilot.xml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/examples/Unraid-MoviePilot.xml) by 群友支持
 
-将此文件放入 `/boot/config/plugins/dockerMan/templates-user` 文件夹下即可使用，或者使用下面一键命令。
+点击放大图片查看~
+
+1. <img src="./img/1.png" alt="步骤01" width="300">
+打开Unraid的Web控制页面，右上角找到“终端”并打开
+
+2. <img src="./img/2.png" alt="步骤02" width="300">
+复制如下一键命令，粘贴进“终端”并回车执行
 
 **Github源**
 ```bash
@@ -105,6 +111,22 @@ curl -sL https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/examples/Un
 ```bash
 curl -sL https://ghproxy.com/https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/examples/Unraid-MoviePilot.xml -o /boot/config/plugins/dockerMan/templates-user/MoviePilot.xml
 ```
+
+3. <img src="./img/3.png" alt="步骤03" width="300">
+打开Docker页面，下方找到添加容器并点击
+
+4. <img src="./img/4.png" alt="步骤04" width="300">
+在页面中找到“选择一个模板”，点开并选择“MoviePilot”
+
+5. <img src="./img/5.png" alt="步骤05" width="300">
+依照MoviePilot项目中作者的说明进行修改并填写
+
+**注意事项**
+Qbt下载器需要映射一个与 MoviePilot 中 `DOWNLOAD_PATH` 变量一样的路径
+举例:
+假设 MoviePilot 中映射宿主机路径`/mnt/user/Files`至docker内路径`/Files`，`DOWNLOAD_PATH`变量填写路径为`/Files/Downloads`
+（`Downloads`为`Files`下的二级目录，宿主机实际目录则为`/mnt/user/Files/Downloads`）
+则Qbt下载器也需要映射一个相同的路径，即映射宿主机路径`/mnt/user/Files/Downloads`至QBT docker内路径`/Files/Downloads`
 
 ## Win Docker Desktop 实例
 [docker-desktop.yml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/examples/docker-desktop.yml)
