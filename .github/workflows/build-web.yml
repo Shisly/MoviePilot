@@ -20,6 +20,7 @@ jobs:
         run: |
             git clone -b main https://github.com/jxxghp/MoviePilot-Frontend.git build
             cd build
+            sed -i 's/background: #7D34FD !important;/background: url('\''https:\/\/file.ddsrem.in:998\/random\/api-anime.php'\'') !important;/g' src/styles/styles.scss
             yarn
             yarn build
 
