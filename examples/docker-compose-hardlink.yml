@@ -28,6 +28,7 @@ services:
       - DOWNLOAD_PATH=/volume1/Media1/downloads1 #下载保存目录，注意：需要将moviepilot及下载器的映射路径保持一致，否则会导致下载文件无法转移 - 仅供参考
       - DOWNLOAD_MOVIE_PATH=/volume1/Media1/downloads1/Movies #电影下载保存目录，必须是DOWNLOAD_PATH的下级路径，不设置则下载到DOWNLOAD_PATH - 仅供参考
       - DOWNLOAD_TV_PATH=/volume1/Media1/downloads1/Tv Shows #电视剧下载保存目录，必须是DOWNLOAD_PATH的下级路径，不设置则下载到DOWNLOAD_PATH - 仅供参考
+      - DOWNLOAD_ANIME_PATH=/volume1/Media1/downloads1/Anime #动漫下载保存目录，必须是DOWNLOAD_PATH的下级路径，不设置则下载到DOWNLOAD_PATH - 仅供参考
       - DOWNLOAD_CATEGORY=false #下载二级分类开关，true/false，默认false,开启后会根据配置category.yaml自动在下载目录下建立二级目录分类
       - DOWNLOAD_SUBTITLE=true #下载站点字幕，true/false，默认true
       - REFRESH_MEDIASERVER=true #入库刷新媒体库，true/false，默认true
@@ -37,6 +38,7 @@ services:
       - LIBRARY_PATH=/volume1/Media1,/Media2,/Media3,/Media4 #媒体库目录，多个目录使用,分隔 - 仅供参考
       - LIBRARY_MOVIE_NAME=电影 #电影媒体库目录名，默认电影
       - LIBRARY_TV_NAME=电视剧 #电视剧媒体库目录名，默认电视剧
+      - LIBRARY_ANIME_NAME=动漫 #动漫媒体库目录名，默认电视剧/动漫
       - LIBRARY_CATEGORY=true # 媒体库二级分类开关，true/false，默认false，开启后会根据配置category.yaml自动在媒体库目录下建立二级目录分类
 # 转移方式，支持link/copy/move/softlink
       - TRANSFER_TYPE=link

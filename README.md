@@ -31,6 +31,7 @@ docker run -itd \
     -e 'DOWNLOAD_PATH=/media/downloads' \
     -e 'DOWNLOAD_MOVIE_PATH=/media/downloads/movies' \
     -e 'DOWNLOAD_TV_PATH=/media/downloads/tv' \
+    -e 'DOWNLOAD_ANIME_PATH=/media/downloads/anime' \
     -e 'DOWNLOAD_SUBTITLE=false' \
     -e 'DOWNLOAD_CATEGORY=false' \
     -e 'DOWNLOADER_MONITOR=true' \
@@ -40,6 +41,7 @@ docker run -itd \
     -e 'LIBRARY_PATH=/media' \
     -e 'LIBRARY_MOVIE_NAME=movies' \
     -e 'LIBRARY_TV_NAME=tv' \
+    -e 'LIBRARY_ANIME_NAME=anime' \
     -e 'LIBRARY_CATEGORY=false' \
     -e 'TRANSFER_TYPE=link' \
     -e 'COOKIECLOUD_HOST=http://cookiecloud:8088/cookie' \
@@ -47,7 +49,7 @@ docker run -itd \
     -e 'COOKIECLOUD_PASSWORD=xxxxxxxxxxxxxxxx' \
     -e 'COOKIECLOUD_INTERVAL=20' \
     -e 'USER_AGENT=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36' \
-    -e 'AUTO_DOWNLOAD_USER='
+    -e 'AUTO_DOWNLOAD_USER=' \
     -e 'MESSAGER=telegram' \
     -e 'TELEGRAM_TOKEN=xxxxxxxxxxxxx' \
     -e 'TELEGRAM_CHAT_ID=xxxxxxxxxxxxx' \
@@ -155,21 +157,25 @@ curl -sL https://ghproxy.com/https://raw.githubusercontent.com/DDS-Derek/MoviePi
 media
 ├── downloads
 │   ├── movies
-│   └── tv
+│   ├── tv
+│   └── anime
 ├── movies
-└── tv
+├── tv
+└── anime
 
-media/movies 和 media/tv 是硬链接后文件路径
-media/downloads/movies 和 media/downloads/tv 是下载路径
+media/movies , media/tv 和 media/anime 是硬链接后文件路径
+media/downloads/movies , media/downloads/tv 和 media/downloads/anime 是下载路径
 
 moviepilot目录挂载及相关环境变量设置：
 -v ./media:/media
 -e DOWNLOAD_PATH=/media/downloads
 -e DOWNLOAD_MOVIE_PATH=/media/downloads/movies
 -e DOWNLOAD_TV_PATH=/media/downloads/tv
+-e DOWNLOAD_ANIME_PATH=/media/downloads/anime
 -e LIBRARY_PATH=/media
 -e LIBRARY_MOVIE_NAME=/media/movies
 -e LIBRARY_TV_NAME=/media/tv
+-e LIBRARY_ANIME_NAME=/media/anime
 
 下载器目录挂载：
 -v ./media/downloads:/media/downloads
