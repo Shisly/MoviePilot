@@ -94,6 +94,8 @@ services:
       - IYUU_SIGN=  #IYUU登录令牌
 # 大内存模式，默认为false，开启后会占用更多的内存，但响应速度会更快
       - BIG_MEMORY_MODE=true 
+# 交互搜索自动下载用户ID，使用,分割
+      - AUTO_DOWNLOAD_USER=
     restart: on-failure
     network_mode: host
     hostname: moviepilot

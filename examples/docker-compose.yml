@@ -66,6 +66,8 @@ services:
             - 'COOKIECLOUD_INTERVAL=20'
             # CookieCloud对应的浏览器UA，可选，设置后可增加连接站点的成功率，同步站点后可以在管理界面中修改
             - 'USER_AGENT=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36'
+            # 交互搜索自动下载用户ID，使用,分割
+            - 'AUTO_DOWNLOAD_USER='
 
             # 消息通知渠道，支持 telegram/wechat/slack
             - 'MESSAGER=telegram'
