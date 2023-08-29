@@ -1,4 +1,4 @@
-name: MoviePilot Docker
+name: MoviePilot Full Builder
 on:
   workflow_dispatch:
 
