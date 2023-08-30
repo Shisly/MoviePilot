@@ -1,20 +1,49 @@
 #!/bin/bash
 
-git clone -b main --depth=1 https://github.com/jxxghp/MoviePilot.git /tmp/app
-pip install --upgrade pip
-pip install -r /tmp/app/requirements.txt
-ACTION_ID=$(curl -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.v3+json" \
-    https://api.github.com/repos/${GITHUB_REPO}/actions/workflows | jq '.workflows[] | select(.name == "Build moviepilot frontend") | .id')
-curl -X POST \
-    -H "Authorization: token ${GITHUB_TOKEN}" \
-    -H "Accept: application/vnd.github.v3+json" \
-    https://api.github.com/repos/${GITHUB_REPO}/actions/workflows/${ACTION_ID}/dispatches \
-    -d '{"ref":"docker"}'
-sleep 150
-git clone -b web --depth=1 https://github.com/${GITHUB_REPO}.git /tmp/web
-rm -rf /app
-mv /tmp/app /app
-rm -rf /public
-mv /tmp/web /public
-rm -rf /tmp/web /tmp/app
-echo "程序更新成功"
+if [ -n "${PROXY_HOST}" ]; then
+    CURL_OPTIONS="-x ${PROXY_HOST}"
+    PIP_OPTIONS="--proxy=${PROXY_HOST}"
+    echo "使用代理更新程序"
+else
+    echo "不使用代理更新程序"
+fi
+
+curl -sL ${CURL_OPTIONS} "https://github.com/jxxghp/MoviePilot/archive/refs/heads/main.zip" | busybox unzip -d /tmp -
+if [ $? -eq 0 ]; then
+    mv /tmp/MoviePilot-main /tmp/app
+    echo "后端程序下载成功"
+    pip install ${PIP_OPTIONS} --upgrade pip
+    pip install -r ${PIP_OPTIONS} /tmp/app/requirements.txt
+    if [ $? -eq 0 ]; then
+        echo "安装依赖成功"
+        ACTION_ID=$(curl ${CURL_OPTIONS} \
+            -H "Authorization: token ${GITHUB_TOKEN}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${GITHUB_REPO}/actions/workflows | \
+            jq '.workflows[] | select(.name == "Build moviepilot frontend") | .id')
+        curl -X POST \
+            ${CURL_OPTIONS} \
+            -H "Authorization: token ${GITHUB_TOKEN}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${GITHUB_REPO}/actions/workflows/${ACTION_ID}/dispatches \
+            -d '{"ref":"docker"}'
+        sleep 150
+        curl -sL ${CURL_OPTIONS} https://github.com/DDS-Derek/MoviePilot/archive/refs/heads/web.zip | busybox unzip -d /tmp -
+        if [ $? -eq 0 ]; then
+            echo "前端程序下载成功"
+            mv /tmp/MoviePilot-web /tmp/web
+            rm -rf /app
+            mv /tmp/app /app
+            rm -rf /public
+            mv /tmp/web /public
+            rm -rf /tmp/web /tmp/app
+            echo "程序更新成功"
+        else
+            echo "前端程序下载失败，继续使用旧的程序来启动..."
+        fi
+    else
+        echo "安装依赖失败，请重新拉取镜像"
+    fi
+else
+    echo "后端程序下载失败，继续使用旧的程序来启动..."
+fi
