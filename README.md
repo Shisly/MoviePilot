@@ -345,3 +345,4 @@ moviepilot目录挂载及相关环境变量设置：
 # MoviePilot 图标地址
 
 [https://raw.githubusercontent.com/jxxghp/MoviePilot-Frontend/main/public/logo.png](https://raw.githubusercontent.com/jxxghp/MoviePilot-Frontend/main/public/logo.png)
+![](https://raw.githubusercontent.com/jxxghp/MoviePilot-Frontend/main/public/logo.png)
