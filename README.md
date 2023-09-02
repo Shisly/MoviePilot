@@ -1,3 +1,15 @@
+- [免责声明](#免责声明)
+- [**MoviePilot 始终坚持**](#moviepilot-始终坚持)
+- [部署实例](#部署实例)
+  - [docker-cli 实例](#docker-cli-实例)
+  - [docker-compose 实例](#docker-compose-实例)
+  - [UnRaid 配置模板](#unraid-配置模板)
+  - [Win Docker Desktop 实例](#win-docker-desktop-实例)
+- [目录挂载解释](#目录挂载解释)
+  - [实例一](#实例一)
+  - [实例二 by 群友支持](#实例二-by-群友支持)
+- [MoviePilot 图标地址](#moviepilot-图标地址)
+
 # 免责声明
 
 - **请勿**在任何国内平台宣传 MoviePilot，MoviePilot 仅用于学习交流使用。
