@@ -8,6 +8,10 @@
 - [目录挂载解释](#目录挂载解释)
   - [实例一](#实例一)
   - [实例二 by 群友支持](#实例二-by-群友支持)
+- [自建OCR教程](#自建ocr教程)
+  - [1. 搭建OCR服务](#1-搭建ocr服务)
+  - [2. 测试服务是否正常](#2-测试服务是否正常)
+  - [3. MoviePilot设置](#3-moviepilot设置)
 - [MoviePilot 图标地址](#moviepilot-图标地址)
 
 # 免责声明
@@ -341,6 +345,57 @@ moviepilot目录挂载及相关环境变量设置：
 ![](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/img/hardlink_v_2.jpg)
 
 [docker-compose.yml](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/examples/docker-compose-hardlink.yml) 实例
+
+# 自建OCR教程
+
+## 1. 搭建OCR服务
+
+**docker-cli**
+
+```bash
+docker run -itd \
+    --name moviepilot-ocr \
+    --hostname moviepilot-ocr \
+    -p 9899:9899 \
+    --log-driver "json-file" \
+    --log-opt "max-size=5m" \
+    --restart always \
+    jxxghp/moviepilot-ocr:latest
+```
+
+**docker-compose**
+
+```yaml
+version: '3.3'
+services:
+    moviepilot-ocr:
+        container_name: moviepilot-ocr
+        hostname: moviepilot-ocr
+        ports:
+            - '9899:9899'
+        logging:
+            driver:
+                - json-file
+            options:
+                max-size: 5m
+        restart: always
+        image: 'jxxghp/moviepilot-ocr:latest'
+```
+
+## 2. 测试服务是否正常
+
+如图使用[此](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/ocr_test.exe)程序进行测试
+
+地址为`http(s)://ip:port`的形式
+
+![](https://raw.githubusercontent.com/DDS-Derek/MoviePilot/docs/img/ocr_test.png)
+
+## 3. MoviePilot设置
+
+启动时添加以下环境变量
+```bash
+-e OCR_HOST=http(s)://ip:port
+```
 
 # MoviePilot 图标地址
 
