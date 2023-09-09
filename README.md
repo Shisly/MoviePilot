@@ -59,6 +59,7 @@ docker run -itd \
     -e 'DOWNLOADER_MONITOR=true' \
     -e 'REFRESH_MEDIASERVER=true' \
     -e 'SCRAP_METADATA=true' \
+    -e 'SCRAP_FOLLOW_TMDB=true' \
     -e 'TORRENT_TAG=MOVIEPILOT' \
     -e 'LIBRARY_PATH=/media' \
     -e 'LIBRARY_MOVIE_NAME=movies' \
@@ -70,6 +71,7 @@ docker run -itd \
     -e 'COOKIECLOUD_KEY=xxxxxxxxxxxxxxxxx' \
     -e 'COOKIECLOUD_PASSWORD=xxxxxxxxxxxxxxxx' \
     -e 'COOKIECLOUD_INTERVAL=20' \
+    -e 'SUBSCRIBE_SEARCH=false' \
     -e 'USER_AGENT=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36' \
     -e 'AUTO_DOWNLOAD_USER=' \
     -e 'MESSAGER=telegram' \
@@ -91,6 +93,7 @@ docker run -itd \
     -e 'QB_HOST=http://qbittorrent:8080' \
     -e 'QB_USER=admin' \
     -e 'QB_PASSWORD=adminadmin' \
+    -e 'QB_CATEGORY=false' \
     -e 'TR_HOST=' \
     -e 'TR_USER=' \
     -e 'TR_PASSWORD=' \
@@ -101,6 +104,7 @@ docker run -itd \
     -e 'JELLYFIN_API_KEY=' \
     -e 'PLEX_HOST=' \
     -e 'PLEX_TOKEN=' \
+    -e 'MEDIASERVER_SYNC_INTERVAL=6' \
     -e 'AUTH_SITE=iyuu' \
     -e 'IYUU_SIGN=xxxxxxxxxxxxx' \
     -e 'BIG_MEMORY_MODE=false' \
@@ -162,6 +166,7 @@ services:
             - 'REFRESH_MEDIASERVER=true'
             # 刮削入库的媒体文件
             - 'SCRAP_METADATA=true'
+            - 'SCRAP_FOLLOW_TMDB=true'
             # 种子标签
             - 'TORRENT_TAG=MOVIEPILOT'
             # 媒体库目录
@@ -183,6 +188,7 @@ services:
             - 'COOKIECLOUD_INTERVAL=20'
             # CookieCloud对应的浏览器UA，可选，设置后可增加连接站点的成功率，同步站点后可以在管理界面中修改
             - 'USER_AGENT=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36'
+            - 'SUBSCRIBE_SEARCH=false'
             # 交互搜索自动下载用户ID，使用,分割
             - 'AUTO_DOWNLOAD_USER='
 
@@ -208,6 +214,7 @@ services:
             - 'QB_HOST=http://qbittorrent:8080'
             - 'QB_USER=admin'
             - 'QB_PASSWORD=adminadmin'
+            - 'QB_CATEGORY=false'
             # - 'TR_HOST='
             # - 'TR_USER='
             # - 'TR_PASSWORD='
@@ -220,6 +227,8 @@ services:
             # - 'JELLYFIN_API_KEY='
             # - 'PLEX_HOST='
             # - 'PLEX_TOKEN='
+
+            - 'MEDIASERVER_SYNC_INTERVAL=6'
 
             # 认证站点，支持hhclub/audiences/hddolby/zmpt/freefarm/hdfans/wintersakura/leaves/1ptba/icc2022/iyuu
             - 'AUTH_SITE=iyuu'
