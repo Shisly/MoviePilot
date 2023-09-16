@@ -32,6 +32,8 @@ services:
       - DOWNLOAD_CATEGORY=false #下载二级分类开关，true/false，默认false,开启后会根据配置category.yaml自动在下载目录下建立二级目录分类
       - DOWNLOAD_SUBTITLE=true #下载站点字幕，true/false，默认true
       - REFRESH_MEDIASERVER=true #入库刷新媒体库，true/false，默认true
+      - SUBSCRIBE_MODE=spider
+      - SUBSCRIBE_RSS_INTERVAL=30
       - SCRAP_METADATA=true #刮削入库的媒体文件，true/false，默认true
       - TORRENT_TAG=MOVIEPILOT #种子标签，默认为MOVIEPILOT，设置后只有MoviePilot添加的下载才会处理，留空所有下载器中的任务均会处理
 # 媒体库路径/分类

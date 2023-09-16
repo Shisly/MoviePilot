@@ -58,6 +58,8 @@ docker run -itd \
     -e 'DOWNLOAD_CATEGORY=false' \
     -e 'DOWNLOADER_MONITOR=true' \
     -e 'REFRESH_MEDIASERVER=true' \
+    -e 'SUBSCRIBE_MODE=spider' \
+    -e 'SUBSCRIBE_RSS_INTERVAL=30' \
     -e 'SCRAP_METADATA=true' \
     -e 'SCRAP_FOLLOW_TMDB=true' \
     -e 'TORRENT_TAG=MOVIEPILOT' \
@@ -164,6 +166,8 @@ services:
             - 'DOWNLOADER_MONITOR=true'
             # 入库刷新媒体库
             - 'REFRESH_MEDIASERVER=true'
+            - 'SUBSCRIBE_MODE=spider'
+            - 'SUBSCRIBE_RSS_INTERVAL=30'
             # 刮削入库的媒体文件
             - 'SCRAP_METADATA=true'
             - 'SCRAP_FOLLOW_TMDB=true'
