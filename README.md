@@ -91,6 +91,8 @@ docker run -itd \
     -e 'SLACK_OAUTH_TOKEN=' \
     -e 'SLACK_APP_TOKEN=' \
     -e 'SLACK_CHANNEL=' \
+    -e 'SYNOLOGYCHAT_WEBHOOK=' \
+    -e 'SYNOLOGYCHAT_TOKEN=' \
     -e 'DOWNLOADER=qbittorrent' \
     -e 'QB_HOST=http://qbittorrent:8080' \
     -e 'QB_USER=admin' \
@@ -196,7 +198,7 @@ services:
             # 交互搜索自动下载用户ID，使用,分割
             - 'AUTO_DOWNLOAD_USER='
 
-            # 消息通知渠道，支持 telegram/wechat/slack
+            # 消息通知渠道，支持 telegram/wechat/slack/synologychat
             - 'MESSAGER=telegram'
             - 'TELEGRAM_TOKEN=xxxxxxxxxxxxx'
             - 'TELEGRAM_CHAT_ID=xxxxxxxxxxxxx'
@@ -212,6 +214,8 @@ services:
             # - 'SLACK_OAUTH_TOKEN='
             # - 'SLACK_APP_TOKEN='
             # - 'SLACK_CHANNEL='
+            # - 'SYNOLOGYCHAT_WEBHOOK='
+            # - 'SYNOLOGYCHAT_TOKEN='
 
             # 下载器，支持qbittorrent/transmission
             - 'DOWNLOADER=qbittorrent'
@@ -232,7 +236,10 @@ services:
             # - 'PLEX_HOST='
             # - 'PLEX_TOKEN='
 
+            # 媒体服务器同步间隔（小时），默认`6`，留空则不同步
             - 'MEDIASERVER_SYNC_INTERVAL=6'
+            # 媒体服务器同步黑名单，多个媒体库名称使用,分割
+            - 'MEDIASERVER_SYNC_BLACKLIST='
 
             # 认证站点，支持hhclub/audiences/hddolby/zmpt/freefarm/hdfans/wintersakura/leaves/1ptba/icc2022/iyuu
             - 'AUTH_SITE=iyuu'
