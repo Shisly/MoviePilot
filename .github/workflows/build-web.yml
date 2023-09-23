@@ -7,13 +7,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Get frontend
         id: get_frontend
         run: |
             git clone -b main https://github.com/jxxghp/MoviePilot-Frontend.git build
-
-      - name: Checkout
-        uses: actions/checkout@v3
 
       - name: Setup node
         uses: actions/setup-node@v3
