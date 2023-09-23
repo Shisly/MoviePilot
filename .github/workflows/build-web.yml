@@ -27,7 +27,7 @@ jobs:
         working-directory: build
         run: |
             sed -i '1s~^~import "./font.css"\nimport "./fairyDustCursor.min.js"\n~' ./src/main.ts
-            mv ../frontend/src/* ./src
+            mv ../full/frontend/src/* ./src
             yarn
             yarn build
 
