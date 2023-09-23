@@ -1,7 +1,7 @@
 FROM jxxghp/moviepilot:latest
 RUN set -ex \
     && apt-get update -y \
-    && apt-get install -y git \
+    && apt-get install -y git nano \
     && \
     if [ "$(uname -m)" = "aarch64" ]; \
         then apt-get install -y build-essential; \
