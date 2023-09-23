@@ -1,0 +1,9 @@
+@font-face {
+  font-family: font;
+  /* stylelint-disable-next-line string-quotes */
+  src: url('./font.woff2') format('woff2');
+}
+
+body {
+  font-family: font, sans-serif;
+}
