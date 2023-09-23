@@ -21,7 +21,7 @@ umask ${UMASK}
 
 shopt -s dotglob
 
-if [ -f /downloads/.cache ]; then
+if [ -d /downloads/.cache ]; then
     mkdir -p /downloads/.cache/ms-playwright
     mv /data/* /downloads/.cache/ms-playwright
     ls -al /downloads/.cache/ms-playwright
