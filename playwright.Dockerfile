@@ -18,3 +18,5 @@ RUN pip install --upgrade pip && \
 COPY --chmod=755 playwright.sh /playwright.sh
 
 ENTRYPOINT [ "/playwright.sh" ]
+
+VOLUME [ "/downloads" ]
