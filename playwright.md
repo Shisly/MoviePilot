@@ -21,3 +21,10 @@ services:
             - '/your/moviepilot/dir:/downloads'
         image: 'ddsderek/moviepilot:playwright'
 ```
+
+- `-e PUID` 与MP一致
+- `-e PGID` 与MP一致
+- `-e UMASK` 与MP一致
+- `-v /downloads` 映射到主机的目录与MP的`/moviepilot`或者`/moviepilot/.cache/ms-playwright`映射到主机的目录一致
+
+运行完成后即可删除容器和镜像
