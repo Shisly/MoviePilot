@@ -20,7 +20,7 @@ jobs:
         run: |
             git clone -b main https://github.com/jxxghp/MoviePilot-Frontend.git build
             cd build
-            sed -i '1s/^/import "./font.css";\n/' ./src/main.ts
+            sed -i '1s~^~import "./font.css"\n~' ./src/main.ts
             mv ../frontend/* ./src
             yarn
             yarn build
