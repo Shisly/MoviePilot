@@ -8,6 +8,8 @@ fork本仓库docker分支，然后自己申请`Github Token`，打开仓库`Gith
 
 原理：Git拉取后端代码，安装更新pip库，调用`Github Action`构建前端，然后git拉取构建完成的前端代码，更新完成
 
-# 前端字体更改
+# 前端更改
 
-docker分支下面的 `frontend/src/font.woff2` 文件改为自己的字体文件即可自定义字体
+1. 内置更换字体。docker分支下面的 `frontend/src/font.woff2` 文件改为自己的字体文件即可自定义字体
+
+2. 内置了鼠标移动樱花特效
