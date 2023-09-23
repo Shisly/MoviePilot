@@ -37,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: full
-          file: full.Dockerfile
+          file: full/full.Dockerfile
           platforms: |
             linux/amd64
             linux/arm64
