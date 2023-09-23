@@ -1,5 +1,7 @@
 #!/bin/bash
 
+umask ${UMASK}
+
 shopt -s dotglob
 
 if [ -f /downloads/.cache ]; then
@@ -11,6 +13,8 @@ else
     mv /data/* /downloads
     ls -al /downloads
 fi
+
+chown -R ${PUID}:${PGID} /downloads
 
 shopt -u dotglob
 
