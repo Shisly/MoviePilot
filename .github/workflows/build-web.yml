@@ -7,6 +7,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Get frontend
+        id: get_frontend
+        run: |
+            git clone -b main https://github.com/jxxghp/MoviePilot-Frontend.git build
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -19,9 +24,8 @@ jobs:
 
       - name: Build frontend
         id: build_frontend
+        working-directory: build
         run: |
-            git clone -b main https://github.com/jxxghp/MoviePilot-Frontend.git build
-            cd build
             sed -i '1s~^~import "./font.css"\n~' ./src/main.ts
             mv ../frontend/src/* ./src
             yarn
