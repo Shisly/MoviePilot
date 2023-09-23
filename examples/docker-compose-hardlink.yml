@@ -13,6 +13,7 @@ services:
       - /volume4/@appdata/transmission/torrents:/torrents #tr种子目录，转移和辅钟需要
       - /volume4/@appdata/qBittorrent/qBittorrent_conf/data/BT_backup:/BT_backup #qb种子目录，转移和辅钟需要
       - /volume4/docker/etc/hosts:/etc/hosts   #host文件映射，方便其他容器套用
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     environment: 
       - PUID=1026 # 运行程序用户的uid，默认0
       - PGID=100  # 运行程序用户的gid，默认0

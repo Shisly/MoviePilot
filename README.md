@@ -39,6 +39,7 @@ docker run -itd \
     -v /media:/media \
     -v /moviepilot/config:/config \
     -v /moviepilot/core:/moviepilot/.cache/ms-playwright \
+    -v /var/run/docker.sock:/var/run/docker.sock:ro \
     -e 'PUID=1000' \
     -e 'PGID=1000' \
     -e 'UMASK=022' \
@@ -255,6 +256,7 @@ services:
         volumes:
             - './moviepilot/config:/config'
             - './moviepilot/core:/moviepilot/.cache/ms-playwright'
+            - '/var/run/docker.sock:/var/run/docker.sock:ro'
             - './media:/media'
         networks:
             - moviepilot
