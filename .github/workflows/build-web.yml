@@ -13,7 +13,9 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-            node-version: '18'
+          node-version: '18'
+          cache: 'yarn'
+          cache-dependency-path: build/yarn.lock
 
       - name: Build frontend
         id: build_frontend
