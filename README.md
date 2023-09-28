@@ -160,7 +160,7 @@ services:
             - 'DOWNLOAD_PATH=/media/downloads'
             - 'DOWNLOAD_MOVIE_PATH=/media/downloads/movies'
             - 'DOWNLOAD_TV_PATH=/media/downloads/tv'
-            - 'DOWNLOAD_ANIME_PATH=/meida/downloads/anime'
+            - 'DOWNLOAD_ANIME_PATH=/media/downloads/anime'
             # 下载站点字幕
             - 'DOWNLOAD_SUBTITLE=false'
             # 下载二级分类开关
