@@ -1,1 +1,0 @@
-import{d as t,e as c,o as s,f as i,i as a,m as l,V as r,P as _}from"./index-d97604e4.js";const C=t({__name:"DialogCloseBtn",emits:["click"],setup(p,{emit:o}){function e(){o("click")}return(m,f)=>{const n=c("IconBtn");return s(),i(n,{class:"absolute right-3 top-3",onClick:_(e,["stop"])},{default:a(()=>[l(r,{icon:"mdi-close"})]),_:1},8,["onClick"])}}});export{C as _};
