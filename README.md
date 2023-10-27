@@ -48,6 +48,7 @@ docker run -itd \
     -e 'NGINX_PORT=3000' \
     -e 'SUPERUSER=admin' \
     -e 'SUPERUSER_PASSWORD=password' \
+    -e 'WALLPAPER=tmdb' \
     -e 'API_TOKEN=moviepilot' \
     -e 'PROXY_HOST=' \
     -e 'TMDB_API_DOMAIN=api.themoviedb.org' \
@@ -70,6 +71,7 @@ docker run -itd \
     -e 'LIBRARY_ANIME_NAME=anime' \
     -e 'LIBRARY_CATEGORY=false' \
     -e 'TRANSFER_TYPE=link' \
+    -e 'OVERWRITE_MODE=size' \
     -e 'COOKIECLOUD_HOST=http://cookiecloud:8088/cookie' \
     -e 'COOKIECLOUD_KEY=xxxxxxxxxxxxxxxxx' \
     -e 'COOKIECLOUD_PASSWORD=xxxxxxxxxxxxxxxx' \
@@ -150,6 +152,8 @@ services:
             - 'SUPERUSER=admin'
             # 超级管理员初始密码
             - 'SUPERUSER_PASSWORD=password'
+            # 登录首页电影海报，`tmdb`/`bing`，默认`tmdb`
+            - 'WALLPAPER=tmdb'
             # API密钥，在媒体服务器Webhook、微信回调等地址配置中需要加上?token=该值，建议修改为复杂字符串
             - 'API_TOKEN=moviepilot'
             # 网络代理（可选）
@@ -185,6 +189,8 @@ services:
             - 'LIBRARY_CATEGORY=false'
             # 转移方式，支持link/copy/move/softlink
             - 'TRANSFER_TYPE=link'
+            # 转移覆盖模式，默认为`size`，支持`nerver`/`size`/`always`，分别表示`不覆盖`/`根据文件大小覆盖（大覆盖小）`/`总是覆盖`
+            - 'OVERWRITE_MODE=size'
             # CookieCloud服务器地址（默认可以不用修改）
             - 'COOKIECLOUD_HOST=http://cookiecloud:8088/cookie'
             # CookieCloud用户KEY
