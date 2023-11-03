@@ -37,6 +37,8 @@
 - [MoviePilot-Plugins](https://github.com/jxxghp/MoviePilot-Plugins)：MoviePilot官方插件市场
 - [MoviePilot-Resources](https://github.com/jxxghp/MoviePilot-Resources)：MoviePilot资源包
 - [MoviePilot-OCR](https://github.com/jxxghp/MoviePilot-OCR)：MoviePilot验证码OCR识别
+- [Putarku/MoviePilot-Help](https://github.com/Putarku/MoviePilot-Help)：MoviePilot配置及使用过程的中的常见问题
+- [DDS-Derek/MoviePilot](https://github.com/DDS-Derek/MoviePilot/tree/docs)：MoviePilot常见问题及其解决办法 & 部分自建功能教程
 
 # 部署实例
 
