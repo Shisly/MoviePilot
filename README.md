@@ -1,5 +1,6 @@
 - [免责声明](#免责声明)
 - [**MoviePilot 始终坚持**](#moviepilot-始终坚持)
+- [MoviePilot Awesome](#moviepilot-awesome)
 - [部署实例](#部署实例)
   - [docker-cli 实例](#docker-cli-实例)
   - [docker-compose 实例](#docker-compose-实例)
@@ -28,6 +29,14 @@
 - 人性化的设置方法
 - 简洁明了的UI界面
 - 风驰电掣的运行速度
+
+# MoviePilot Awesome
+
+- [MoviePilot](https://github.com/jxxghp/MoviePilot)：主仓库
+- [MoviePilot-Frontend](https://github.com/jxxghp/MoviePilot-Frontend)：MoviePilot前端
+- [MoviePilot-Plugins](https://github.com/jxxghp/MoviePilot-Plugins)：MoviePilot官方插件市场
+- [MoviePilot-Resources](https://github.com/jxxghp/MoviePilot-Resources)：MoviePilot资源包
+- [MoviePilot-OCR](https://github.com/jxxghp/MoviePilot-OCR)：MoviePilot验证码OCR识别
 
 # 部署实例
 
