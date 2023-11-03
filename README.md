@@ -44,7 +44,7 @@ docker run -itd \
     -e 'PGID=1000' \
     -e 'UMASK=022' \
     -e 'TZ=Asia/Shanghai' \
-    -e 'MOVIEPILOT_AUTO_UPDATE=true' \
+    -e 'MOVIEPILOT_AUTO_UPDATE=release' \
     -e 'NGINX_PORT=3000' \
     -e 'SUPERUSER=admin' \
     -e 'SUPERUSER_PASSWORD=password' \
@@ -59,7 +59,6 @@ docker run -itd \
     -e 'DOWNLOAD_SUBTITLE=false' \
     -e 'DOWNLOAD_CATEGORY=false' \
     -e 'DOWNLOADER_MONITOR=true' \
-    -e 'REFRESH_MEDIASERVER=true' \
     -e 'SUBSCRIBE_MODE=spider' \
     -e 'SUBSCRIBE_RSS_INTERVAL=30' \
     -e 'SCRAP_METADATA=true' \
@@ -79,6 +78,7 @@ docker run -itd \
     -e 'SUBSCRIBE_SEARCH=false' \
     -e 'USER_AGENT=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36' \
     -e 'AUTO_DOWNLOAD_USER=' \
+    -e 'PLUGIN_MARKET=https://raw.githubusercontent.com/jxxghp/MoviePilot-Plugins/main/' \
     -e 'MESSAGER=telegram' \
     -e 'TELEGRAM_TOKEN=xxxxxxxxxxxxx' \
     -e 'TELEGRAM_CHAT_ID=xxxxxxxxxxxxx' \
@@ -101,6 +101,8 @@ docker run -itd \
     -e 'QB_USER=admin' \
     -e 'QB_PASSWORD=adminadmin' \
     -e 'QB_CATEGORY=false' \
+    -e 'QB_SEQUENTIAL=true'
+    -e 'QB_FORCE_RESUME=false'
     -e 'TR_HOST=' \
     -e 'TR_USER=' \
     -e 'TR_PASSWORD=' \
@@ -145,7 +147,7 @@ services:
             - 'UMASK=022'
             - 'TZ=Asia/Shanghai'
             # 重启更新
-            - 'MOVIEPILOT_AUTO_UPDATE=true'
+            - 'MOVIEPILOT_AUTO_UPDATE=release'
             # WEB服务端口
             - 'NGINX_PORT=3000'
             # 超级管理员用户名
@@ -171,8 +173,6 @@ services:
             - 'DOWNLOAD_CATEGORY=false'
             # 下载器监控
             - 'DOWNLOADER_MONITOR=true'
-            # 入库刷新媒体库
-            - 'REFRESH_MEDIASERVER=true'
             - 'SUBSCRIBE_MODE=spider'
             - 'SUBSCRIBE_RSS_INTERVAL=30'
             # 刮削入库的媒体文件
@@ -205,6 +205,9 @@ services:
             # 交互搜索自动下载用户ID，使用,分割
             - 'AUTO_DOWNLOAD_USER='
 
+            # 插件市场仓库地址，多个地址使用`,`分隔，保留最后的/
+            - 'PLUGIN_MARKET=https://raw.githubusercontent.com/jxxghp/MoviePilot-Plugins/main/'
+
             # 消息通知渠道，支持 telegram/wechat/slack/synologychat
             - 'MESSAGER=telegram'
             - 'TELEGRAM_TOKEN=xxxxxxxxxxxxx'
@@ -230,6 +233,8 @@ services:
             - 'QB_USER=admin'
             - 'QB_PASSWORD=adminadmin'
             - 'QB_CATEGORY=false'
+            - 'QB_SEQUENTIAL=true'
+            - 'QB_FORCE_RESUME=false'
             # - 'TR_HOST='
             # - 'TR_USER='
             # - 'TR_PASSWORD='
@@ -248,7 +253,7 @@ services:
             # 媒体服务器同步黑名单，多个媒体库名称使用,分割
             - 'MEDIASERVER_SYNC_BLACKLIST='
 
-            # 认证站点，支持hhclub/audiences/hddolby/zmpt/freefarm/hdfans/wintersakura/leaves/1ptba/icc2022/iyuu
+            # 认证站点，认证资源`v1.0.1`支持`iyuu`/`hhclub`/`audiences`/`hddolby`/`zmpt`/`freefarm`/`hdfans`/`wintersakura`/`leaves`/`1ptba`/`icc2022`/`ptlsp`/`xingtan`/`ptvicomo`
             - 'AUTH_SITE=iyuu'
             - 'IYUU_SIGN=xxxxxxxxxxxxx'
             # 大内存模式

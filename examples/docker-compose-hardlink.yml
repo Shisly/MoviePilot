@@ -19,7 +19,7 @@ services:
       - PGID=100  # 运行程序用户的gid，默认0
       - UMASK=000 # 掩码权限，默认000，可以考虑设置为022
       - WALLPAPER=tmdb # 登录首页电影海报，`tmdb`/`bing`，默认`tmdb`
-      - MOVIEPILOT_AUTO_UPDATE=true #重启更新，true/false，默认true
+      - MOVIEPILOT_AUTO_UPDATE=release #重启更新，true/false，默认true
       - NGINX_PORT= #WEB服务端口，默认3000，可自行修改，但不能为3001
       - SUPERUSER=  #超级管理员用户名，默认admin，安装后使用该用户登录后台管理界面
       - SUPERUSER_  # 超级管理员初始密码，默认password，建议修改为复杂密码
@@ -33,7 +33,6 @@ services:
       - DOWNLOAD_ANIME_PATH=/volume1/Media1/downloads1/Anime #动漫下载保存目录，必须是DOWNLOAD_PATH的下级路径，不设置则下载到DOWNLOAD_PATH - 仅供参考
       - DOWNLOAD_CATEGORY=false #下载二级分类开关，true/false，默认false,开启后会根据配置category.yaml自动在下载目录下建立二级目录分类
       - DOWNLOAD_SUBTITLE=true #下载站点字幕，true/false，默认true
-      - REFRESH_MEDIASERVER=true #入库刷新媒体库，true/false，默认true
       - SUBSCRIBE_MODE=spider
       - SUBSCRIBE_RSS_INTERVAL=30
       - SCRAP_METADATA=true #刮削入库的媒体文件，true/false，默认true
@@ -81,6 +80,9 @@ services:
       - QB_HOST= #qbittorrent地址，格式：ip:port，https需要添加https://前缀
       - QB_USER= #qbittorrent用户名
       - QB_PASSWORD= #qbittorrent密码
+      - QB_CATEGORY=false
+      - QB_SEQUENTIAL=true
+      - QB_FORCE_RESUME=false
 #transmission设置项
       - TR_HOST= #transmission地址，格式：ip:port，https需要添加https://前缀
       - TR_USER= #transmission用户名
@@ -100,7 +102,7 @@ services:
       - MEDIASERVER_SYNC_INTERVAL=1 #媒体服务器同步间隔（小时），默认6，留空则不同步
       - MEDIASERVER_SYNC_BLACKLIST= #媒体服务器同步黑名单，多个媒体库名称使用,分割
 # 认证站点
-      - AUTH_SITE=iyuu  # 认证站点，支持hhclub/audiences/hddolby/zmpt/freefarm/hdfans/wintersakura/leaves/1ptba/icc2022/iyuu
+      - AUTH_SITE=iyuu  # 认证站点，认证资源`v1.0.1`支持`iyuu`/`hhclub`/`audiences`/`hddolby`/`zmpt`/`freefarm`/`hdfans`/`wintersakura`/`leaves`/`1ptba`/`icc2022`/`ptlsp`/`xingtan`/`ptvicomo`
 # IYUU登录令牌
       - IYUU_SIGN=  #IYUU登录令牌
 # 大内存模式，默认为false，开启后会占用更多的内存，但响应速度会更快
