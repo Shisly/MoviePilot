@@ -40,6 +40,7 @@
 - [Putarku/MoviePilot-Help](https://github.com/Putarku/MoviePilot-Help)：MoviePilot配置及使用过程的中的常见问题
 - [DDS-Derek/MoviePilot](https://github.com/DDS-Derek/MoviePilot/tree/docs)：MoviePilot常见问题及其解决办法 & 部分自建功能教程
 - [DDS-Derek/wxchat-Docker](https://github.com/DDS-Derek/wxchat-Docker)：MoviePilot微信转发代理
+- [developer-wlj/Windows-MoviePilot](https://github.com/developer-wlj/Windows-MoviePilot)：exe方式运行MoviePilot
 
 # 部署实例
 
