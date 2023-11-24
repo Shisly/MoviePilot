@@ -65,6 +65,7 @@ docker run -itd \
     -e 'UMASK=022' \
     -e 'TZ=Asia/Shanghai' \
     -e 'MOVIEPILOT_AUTO_UPDATE=release' \
+    -e 'AUTO_UPDATE_RESOURCE=true' \
     -e 'NGINX_PORT=3000' \
     -e 'SUPERUSER=admin' \
     -e 'SUPERUSER_PASSWORD=password' \
@@ -98,7 +99,7 @@ docker run -itd \
     -e 'SUBSCRIBE_SEARCH=false' \
     -e 'USER_AGENT=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36' \
     -e 'AUTO_DOWNLOAD_USER=' \
-    -e 'PLUGIN_MARKET=https://raw.githubusercontent.com/jxxghp/MoviePilot-Plugins/main/' \
+    -e 'PLUGIN_MARKET=https://github.com/jxxghp/MoviePilot-Plugins' \
     -e 'MESSAGER=telegram' \
     -e 'TELEGRAM_TOKEN=xxxxxxxxxxxxx' \
     -e 'TELEGRAM_CHAT_ID=xxxxxxxxxxxxx' \
@@ -121,8 +122,8 @@ docker run -itd \
     -e 'QB_USER=admin' \
     -e 'QB_PASSWORD=adminadmin' \
     -e 'QB_CATEGORY=false' \
-    -e 'QB_SEQUENTIAL=true'
-    -e 'QB_FORCE_RESUME=false'
+    -e 'QB_SEQUENTIAL=true' \
+    -e 'QB_FORCE_RESUME=false' \
     -e 'TR_HOST=' \
     -e 'TR_USER=' \
     -e 'TR_PASSWORD=' \
@@ -134,6 +135,7 @@ docker run -itd \
     -e 'PLEX_HOST=' \
     -e 'PLEX_TOKEN=' \
     -e 'MEDIASERVER_SYNC_INTERVAL=6' \
+    -e 'GITHUB_TOKEN=' \
     -e 'AUTH_SITE=iyuu' \
     -e 'IYUU_SIGN=xxxxxxxxxxxxx' \
     -e 'BIG_MEMORY_MODE=false' \
@@ -168,6 +170,8 @@ services:
             - 'TZ=Asia/Shanghai'
             # 重启更新
             - 'MOVIEPILOT_AUTO_UPDATE=release'
+            # 自动检测和更新资源包（站点索引及认证等），`true`/`false`，默认`true`，需要能正常连接Github，仅支持Docker
+            - 'AUTO_UPDATE_RESOURCE=true'
             # WEB服务端口
             - 'NGINX_PORT=3000'
             # 超级管理员用户名
@@ -226,7 +230,7 @@ services:
             - 'AUTO_DOWNLOAD_USER='
 
             # 插件市场仓库地址，多个地址使用`,`分隔，保留最后的/
-            - 'PLUGIN_MARKET=https://raw.githubusercontent.com/jxxghp/MoviePilot-Plugins/main/'
+            - 'PLUGIN_MARKET=https://github.com/jxxghp/MoviePilot-Plugins'
 
             # 消息通知渠道，支持 telegram/wechat/slack/synologychat
             - 'MESSAGER=telegram'
@@ -272,6 +276,9 @@ services:
             - 'MEDIASERVER_SYNC_INTERVAL=6'
             # 媒体服务器同步黑名单，多个媒体库名称使用,分割
             - 'MEDIASERVER_SYNC_BLACKLIST='
+
+            # Github token，提高请求api限流阈值 ghp_****
+            - 'GITHUB_TOKEN='
 
             # 认证站点，认证资源`v1.0.1`支持`iyuu`/`hhclub`/`audiences`/`hddolby`/`zmpt`/`freefarm`/`hdfans`/`wintersakura`/`leaves`/`1ptba`/`icc2022`/`ptlsp`/`xingtan`/`ptvicomo`
             - 'AUTH_SITE=iyuu'
