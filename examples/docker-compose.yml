@@ -79,7 +79,7 @@ services:
             # 交互搜索自动下载用户ID，使用,分割
             - 'AUTO_DOWNLOAD_USER='
 
-            # 插件市场仓库地址，多个地址使用`,`分隔，保留最后的/
+            # 插件市场仓库地址，多个地址使用`,`分隔
             - 'PLUGIN_MARKET=https://github.com/jxxghp/MoviePilot-Plugins'
 
             # 消息通知渠道，支持 telegram/wechat/slack/synologychat

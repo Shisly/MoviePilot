@@ -40,7 +40,7 @@
 - [DDS-Derek/MoviePilot](https://github.com/DDS-Derek/MoviePilot/tree/docs)：MoviePilot常见问题及其解决办法 & 部分自建功能教程
 - [DDS-Derek/wxchat-Docker](https://github.com/DDS-Derek/wxchat-Docker)：MoviePilot微信转发代理
 - [developer-wlj/Windows-MoviePilot](https://github.com/developer-wlj/Windows-MoviePilot)：exe方式运行MoviePilot
-- MoviePilot-Plugins：MoviePilot插件市场
+- MoviePilot-Plugins：MoviePilot插件市场 `PLUGIN_MARKET=https://github.com/jxxghp/MoviePilot-Plugins,https://github.com/thsrite/MoviePilot-Plugins,https://github.com/honue/MoviePilot-Plugins,https://github.com/dandkong/MoviePilot-Plugins,https://github.com/Aqr-K/MoviePilot-Plugins,https://github.com/AnjoyLi/MoviePilot-Plugins`
   - https://github.com/jxxghp/MoviePilot-Plugins
   - https://github.com/thsrite/MoviePilot-Plugins
   - https://github.com/honue/MoviePilot-Plugins
@@ -229,7 +229,7 @@ services:
             # 交互搜索自动下载用户ID，使用,分割
             - 'AUTO_DOWNLOAD_USER='
 
-            # 插件市场仓库地址，多个地址使用`,`分隔，保留最后的/
+            # 插件市场仓库地址，多个地址使用`,`分隔
             - 'PLUGIN_MARKET=https://github.com/jxxghp/MoviePilot-Plugins'
 
             # 消息通知渠道，支持 telegram/wechat/slack/synologychat
