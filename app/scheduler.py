@@ -13,6 +13,7 @@ from app.chain.cookiecloud import CookieCloudChain
 from app.chain.mediaserver import MediaServerChain
 from app.chain.subscribe import SubscribeChain
 from app.chain.tmdb import TmdbChain
+from app.chain.torrents import TorrentsChain
 from app.chain.transfer import TransferChain
 from app.core.config import settings
 from app.log import logger
@@ -43,6 +44,14 @@ class Scheduler(metaclass=Singleton):
     _event = threading.Event()
 
     def __init__(self):
+
+        def clear_cache():
+            """
+            清理缓存
+            """
+            TorrentsChain().clear_cache()
+            SchedulerChain().clear_cache()
+
         # 各服务的运行状态
         self._jobs = {
             "cookiecloud": {
@@ -70,6 +79,10 @@ class Scheduler(metaclass=Singleton):
             },
             "transfer": {
                 "func": TransferChain().process,
+                "running": False,
+            },
+            "clear_cache": {
+                "func": clear_cache,
                 "running": False,
             }
         }
@@ -200,6 +213,18 @@ class Scheduler(metaclass=Singleton):
             SchedulerChain().scheduler_job,
             "interval",
             minutes=10
+        )
+
+        # 缓存清理服务，每隔24小时
+        self._scheduler.add_job(
+            self.start,
+            "interval",
+            id="clear_cache",
+            name="缓存清理",
+            hours=settings.CACHE_CONF.get("meta") / 3600,
+            kwargs={
+                'job_id': 'clear_cache'
+            }
         )
 
         # 打印服务

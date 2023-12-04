@@ -7,7 +7,8 @@ from sqlalchemy.orm import Session
 from app import schemas
 from app.chain.subscribe import SubscribeChain
 from app.core.config import settings
-from app.core.security import verify_token
+from app.core.metainfo import MetaInfo
+from app.core.security import verify_token, verify_uri_token
 from app.db import get_db
 from app.db.models.subscribe import Subscribe
 from app.db.models.user import User
@@ -27,7 +28,7 @@ def start_subscribe_add(title: str, year: str,
                          mtype=mtype, tmdbid=tmdbid, season=season, username=username)
 
 
-@router.get("/", summary="所有订阅", response_model=List[schemas.Subscribe])
+@router.get("/", summary="查询所有订阅", response_model=List[schemas.Subscribe])
 def read_subscribes(
         db: Session = Depends(get_db),
         _: schemas.TokenPayload = Depends(verify_token)) -> Any:
@@ -39,6 +40,14 @@ def read_subscribes(
         if subscribe.sites:
             subscribe.sites = json.loads(subscribe.sites)
     return subscribes
+
+
+@router.get("/list", summary="查询所有订阅（API_TOKEN）", response_model=List[schemas.Subscribe])
+def list_subscribes(_: str = Depends(verify_uri_token)) -> Any:
+    """
+    查询所有订阅 API_TOKEN认证（?token=xxx）
+    """
+    return read_subscribes()
 
 
 @router.post("/", summary="新增订阅", response_model=schemas.Response)
@@ -55,6 +64,11 @@ def create_subscribe(
         mtype = MediaType(subscribe_in.type)
     else:
         mtype = None
+    # 豆瓣标理
+    if subscribe_in.doubanid:
+        meta = MetaInfo(subscribe_in.name)
+        subscribe_in.name = meta.name
+        subscribe_in.season = meta.begin_season
     # 标题转换
     if subscribe_in.name:
         title = subscribe_in.name
@@ -108,23 +122,30 @@ def update_subscribe(
 def subscribe_mediaid(
         mediaid: str,
         season: int = None,
+        title: str = None,
         db: Session = Depends(get_db),
         _: schemas.TokenPayload = Depends(verify_token)) -> Any:
     """
     根据TMDBID或豆瓣ID查询订阅 tmdb:/douban:
     """
+    result = None
     if mediaid.startswith("tmdb:"):
         tmdbid = mediaid[5:]
         if not tmdbid or not str(tmdbid).isdigit():
             return Subscribe()
-        result = Subscribe.exists(db, int(tmdbid), season)
+        result = Subscribe.exists(db, tmdbid=int(tmdbid), season=season)
     elif mediaid.startswith("douban:"):
         doubanid = mediaid[7:]
         if not doubanid:
             return Subscribe()
         result = Subscribe.get_by_doubanid(db, doubanid)
-    else:
-        result = None
+
+    if not result and title:
+        meta = MetaInfo(title)
+        if season:
+            meta.begin_season = season
+        result = Subscribe.get_by_title(db, title=meta.name, season=meta.begin_season)
+
     if result and result.sites:
         result.sites = json.loads(result.sites)
 
@@ -243,7 +264,7 @@ def delete_subscribe(
 async def seerr_subscribe(request: Request, background_tasks: BackgroundTasks,
                           authorization: str = Header(None)) -> Any:
     """
-    Jellyseerr/Overseerr订阅
+    Jellyseerr/Overseerr网络勾子通知订阅
     """
     if not authorization or authorization != settings.API_TOKEN:
         raise HTTPException(

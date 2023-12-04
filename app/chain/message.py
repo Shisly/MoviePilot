@@ -1,15 +1,22 @@
 import copy
-from typing import Any
+import json
+import re
+from typing import Any, Optional, Dict
 
-from app.chain.download import *
+from app.chain import ChainBase
+from app.chain.download import DownloadChain
 from app.chain.media import MediaChain
 from app.chain.search import SearchChain
 from app.chain.subscribe import SubscribeChain
-from app.core.context import MediaInfo
+from app.core.config import settings
+from app.core.context import MediaInfo, Context
 from app.core.event import EventManager
+from app.core.meta import MetaBase
+from app.helper.torrent import TorrentHelper
 from app.log import logger
 from app.schemas import Notification
-from app.schemas.types import EventType, MessageChannel
+from app.schemas.types import EventType, MessageChannel, MediaType
+from app.utils.string import StringUtils
 
 # 当前页面
 _current_page: int = 0
@@ -34,7 +41,6 @@ class MessageChain(ChainBase):
         self.subscribechain = SubscribeChain()
         self.searchchain = SearchChain()
         self.medtachain = MediaChain()
-        self.torrent = TorrentHelper()
         self.eventmanager = EventManager()
         self.torrenthelper = TorrentHelper()
 
@@ -110,9 +116,10 @@ class MessageChain(ChainBase):
                 # 发送缺失的媒体信息
                 if no_exists:
                     # 发送消息
+                    mediakey = mediainfo.tmdb_id or mediainfo.douban_id
                     messages = [
                         f"第 {sea} 季缺失 {StringUtils.str_series(no_exist.episodes) if no_exist.episodes else no_exist.total_episode} 集"
-                        for sea, no_exist in no_exists.get(mediainfo.tmdb_id).items()]
+                        for sea, no_exist in no_exists.get(mediakey).items()]
                     self.post_message(Notification(channel=channel,
                                                    title=f"{mediainfo.title_year}：\n" + "\n".join(messages),
                                                    userid=userid))
@@ -353,6 +360,13 @@ class MessageChain(ChainBase):
         else:
             # 未完成下载
             logger.info(f'{_current_media.title_year} 未下载未完整，添加订阅 ...')
+            if downloads and _current_media.type == MediaType.TV:
+                # 获取已下载剧集
+                downloaded = [download.meta_info.begin_episode for download in downloads
+                              if download.meta_info.begin_episode]
+                note = json.dumps(downloaded)
+            else:
+                note = None
             # 添加订阅，状态为R
             self.subscribechain.add(title=_current_media.title,
                                     year=_current_media.year,
@@ -362,7 +376,8 @@ class MessageChain(ChainBase):
                                     channel=channel,
                                     userid=userid,
                                     username=username,
-                                    state="R")
+                                    state="R",
+                                    note=note)
 
     def __post_medias_message(self, channel: MessageChannel,
                               title: str, items: list, userid: str, total: int):

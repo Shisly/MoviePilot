@@ -69,11 +69,15 @@ class Subscribe(Base):
 
     @staticmethod
     @db_query
-    def exists(db: Session, tmdbid: int, season: int = None):
-        if season:
-            return db.query(Subscribe).filter(Subscribe.tmdbid == tmdbid,
-                                              Subscribe.season == season).first()
-        return db.query(Subscribe).filter(Subscribe.tmdbid == tmdbid).first()
+    def exists(db: Session, tmdbid: int = None, doubanid: str = None, season: int = None):
+        if tmdbid:
+            if season:
+                return db.query(Subscribe).filter(Subscribe.tmdbid == tmdbid,
+                                                  Subscribe.season == season).first()
+            return db.query(Subscribe).filter(Subscribe.tmdbid == tmdbid).first()
+        elif doubanid:
+            return db.query(Subscribe).filter(Subscribe.doubanid == doubanid).first()
+        return None
 
     @staticmethod
     @db_query
@@ -93,7 +97,10 @@ class Subscribe(Base):
 
     @staticmethod
     @db_query
-    def get_by_title(db: Session, title: str):
+    def get_by_title(db: Session, title: str, season: int = None):
+        if season:
+            return db.query(Subscribe).filter(Subscribe.name == title,
+                                              Subscribe.season == season).first()
         return db.query(Subscribe).filter(Subscribe.name == title).first()
 
     @staticmethod

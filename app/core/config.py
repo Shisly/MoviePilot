@@ -1,7 +1,7 @@
 import secrets
 import sys
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseSettings
 
@@ -43,14 +43,14 @@ class Settings(BaseSettings):
     WALLPAPER: str = "tmdb"
     # 网络代理 IP:PORT
     PROXY_HOST: str = None
-    # 媒体信息搜索来源
-    SEARCH_SOURCE: str = "themoviedb"
+    # 媒体识别来源 themoviedb/douban
+    RECOGNIZE_SOURCE: str = "themoviedb"
+    # 刮削来源 themoviedb/douban
+    SCRAP_SOURCE: str = "themoviedb"
     # 刮削入库的媒体文件
     SCRAP_METADATA: bool = True
     # 新增已入库媒体是否跟随TMDB信息变化
     SCRAP_FOLLOW_TMDB: bool = True
-    # 刮削来源
-    SCRAP_SOURCE: str = "themoviedb"
     # TMDB图片地址
     TMDB_IMAGE_DOMAIN: str = "image.tmdb.org"
     # TMDB API地址
@@ -155,10 +155,8 @@ class Settings(BaseSettings):
     DOWNLOAD_SUBTITLE: bool = True
     # 媒体服务器 emby/jellyfin/plex，多个媒体服务器,分割
     MEDIASERVER: str = "emby"
-    # 入库刷新媒体库
-    REFRESH_MEDIASERVER: bool = True
     # 媒体服务器同步间隔（小时）
-    MEDIASERVER_SYNC_INTERVAL: int = 6
+    MEDIASERVER_SYNC_INTERVAL: Optional[int] = 6
     # 媒体服务器同步黑名单，多个媒体库名称,分割
     MEDIASERVER_SYNC_BLACKLIST: str = None
     # EMBY服务器地址，IP:PORT
@@ -182,7 +180,7 @@ class Settings(BaseSettings):
     # CookieCloud端对端加密密码
     COOKIECLOUD_PASSWORD: str = None
     # CookieCloud同步间隔（分钟）
-    COOKIECLOUD_INTERVAL: int = 60 * 24
+    COOKIECLOUD_INTERVAL: Optional[int] = 60 * 24
     # OCR服务器地址
     OCR_HOST: str = "https://movie-pilot.org"
     # CookieCloud对应的浏览器UA
@@ -212,6 +210,12 @@ class Settings(BaseSettings):
     OVERWRITE_MODE: str = "size"
     # 大内存模式
     BIG_MEMORY_MODE: bool = False
+    # 插件市场仓库地址，多个地址使用,分隔，地址以/结尾
+    PLUGIN_MARKET: str = "https://github.com/jxxghp/MoviePilot-Plugins"
+    # Github token，提高请求api限流阈值 ghp_****
+    GITHUB_TOKEN: str = None
+    # 自动检查和更新站点资源包（站点索引、认证等）
+    AUTO_UPDATE_RESOURCE: bool = True
 
     @property
     def INNER_CONFIG_PATH(self):
@@ -321,6 +325,17 @@ class Settings(BaseSettings):
             return Path(self.DOWNLOAD_ANIME_PATH)
         return self.SAVE_TV_PATH
 
+    @property
+    def GITHUB_HEADERS(self):
+        """
+        Github请求头
+        """
+        if self.GITHUB_TOKEN:
+            return {
+                "Authorization": f"Bearer {self.GITHUB_TOKEN}"
+            }
+        return {}
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         with self.CONFIG_PATH as p:
@@ -335,12 +350,6 @@ class Settings(BaseSettings):
         with self.LOG_PATH as p:
             if not p.exists():
                 p.mkdir(parents=True, exist_ok=True)
-        with self.SAVE_PATH as p:
-            if not p.exists():
-                p.mkdir(parents=True, exist_ok=True)
-        for path in self.LIBRARY_PATHS:
-            if not path.exists():
-                path.mkdir(parents=True, exist_ok=True)
 
     class Config:
         case_sensitive = True

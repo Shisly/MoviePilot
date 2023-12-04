@@ -22,9 +22,11 @@ from app.core.plugin import PluginManager
 from app.db.init import init_db, update_db
 from app.helper.thread import ThreadHelper
 from app.helper.display import DisplayHelper
+from app.helper.resource import ResourceHelper
 from app.helper.sites import SitesHelper
 from app.scheduler import Scheduler
 from app.command import Command
+
 
 # App
 App = FastAPI(title=settings.PROJECT_NAME,
@@ -60,7 +62,9 @@ def start_frontend():
     """
     启动前端服务
     """
-    if not SystemUtils.is_frozen():
+    # 仅Windows可执行文件支持内嵌nginx
+    if not SystemUtils.is_frozen() \
+            or not SystemUtils.is_windows():
         return
     # 临时Nginx目录
     nginx_path = settings.ROOT_PATH / 'nginx'
@@ -73,27 +77,20 @@ def start_frontend():
         SystemUtils.move(nginx_path, run_nginx_dir)
     # 启动Nginx
     import subprocess
-    if SystemUtils.is_windows():
-        subprocess.Popen("start nginx.exe",
-                         cwd=run_nginx_dir,
-                         shell=True)
-    else:
-        subprocess.Popen("nohup ./nginx &",
-                         cwd=run_nginx_dir,
-                         shell=True)
+    subprocess.Popen("start nginx.exe",
+                     cwd=run_nginx_dir,
+                     shell=True)
 
 
 def stop_frontend():
     """
     停止前端服务
     """
-    if not SystemUtils.is_frozen():
+    if not SystemUtils.is_frozen() \
+            or not SystemUtils.is_windows():
         return
     import subprocess
-    if SystemUtils.is_windows():
-        subprocess.Popen(f"taskkill /f /im nginx.exe", shell=True)
-    else:
-        subprocess.Popen(f"killall nginx", shell=True)
+    subprocess.Popen(f"taskkill /f /im nginx.exe", shell=True)
 
 
 def start_tray():
@@ -102,6 +99,9 @@ def start_tray():
     """
 
     if not SystemUtils.is_frozen():
+        return
+
+    if not SystemUtils.is_windows():
         return
 
     def open_web():
@@ -169,6 +169,8 @@ def start_module():
     DisplayHelper()
     # 站点管理
     SitesHelper()
+    # 资源包检测
+    ResourceHelper()
     # 加载模块
     ModuleManager()
     # 加载插件

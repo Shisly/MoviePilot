@@ -28,20 +28,6 @@ def douban_img(imgurl: str) -> Any:
     return None
 
 
-@router.get("/recognize/{doubanid}", summary="豆瓣ID识别", response_model=schemas.Context)
-def recognize_doubanid(doubanid: str,
-                       _: schemas.TokenPayload = Depends(verify_token)) -> Any:
-    """
-    根据豆瓣ID识别媒体信息
-    """
-    # 识别媒体信息
-    context = DoubanChain().recognize_by_doubanid(doubanid=doubanid)
-    if context:
-        return context.to_dict()
-    else:
-        return schemas.Context()
-
-
 @router.get("/showing", summary="豆瓣正在热映", response_model=List[schemas.MediaInfo])
 def movie_showing(page: int = 1,
                   count: int = 30,
@@ -139,6 +125,69 @@ def tv_animation(page: int = 1,
     """
     tvs = DoubanChain().tv_animation(page=page, count=count)
     return [MediaInfo(douban_info=tv).to_dict() for tv in tvs]
+
+
+@router.get("/movie_hot", summary="豆瓣热门电影", response_model=List[schemas.MediaInfo])
+def movie_hot(page: int = 1,
+              count: int = 30,
+              _: schemas.TokenPayload = Depends(verify_token)) -> Any:
+    """
+    热门电影
+    """
+    movies = DoubanChain().movie_hot(page=page, count=count)
+    return [MediaInfo(douban_info=movie).to_dict() for movie in movies]
+
+
+@router.get("/tv_hot", summary="豆瓣热门电视剧", response_model=List[schemas.MediaInfo])
+def tv_hot(page: int = 1,
+           count: int = 30,
+           _: schemas.TokenPayload = Depends(verify_token)) -> Any:
+    """
+    热门电视剧
+    """
+    tvs = DoubanChain().tv_hot(page=page, count=count)
+    return [MediaInfo(douban_info=tv).to_dict() for tv in tvs]
+
+
+@router.get("/credits/{doubanid}/{type_name}", summary="豆瓣演员阵容", response_model=List[schemas.DoubanPerson])
+def douban_credits(doubanid: str,
+                   type_name: str,
+                   page: int = 1,
+                   _: schemas.TokenPayload = Depends(verify_token)) -> Any:
+    """
+    根据TMDBID查询演员阵容，type_name: 电影/电视剧
+    """
+    mediatype = MediaType(type_name)
+    if mediatype == MediaType.MOVIE:
+        doubaninfos = DoubanChain().movie_credits(doubanid=doubanid, page=page)
+    elif mediatype == MediaType.TV:
+        doubaninfos = DoubanChain().tv_credits(doubanid=doubanid, page=page)
+    else:
+        return []
+    if not doubaninfos:
+        return []
+    else:
+        return [schemas.DoubanPerson(**doubaninfo) for doubaninfo in doubaninfos]
+
+
+@router.get("/recommend/{doubanid}/{type_name}", summary="豆瓣推荐电影/电视剧", response_model=List[schemas.MediaInfo])
+def douban_recommend(doubanid: str,
+                     type_name: str,
+                     _: schemas.TokenPayload = Depends(verify_token)) -> Any:
+    """
+    根据豆瓣ID查询推荐电影/电视剧，type_name: 电影/电视剧
+    """
+    mediatype = MediaType(type_name)
+    if mediatype == MediaType.MOVIE:
+        doubaninfos = DoubanChain().movie_recommend(doubanid=doubanid)
+    elif mediatype == MediaType.TV:
+        doubaninfos = DoubanChain().tv_recommend(doubanid=doubanid)
+    else:
+        return []
+    if not doubaninfos:
+        return []
+    else:
+        return [MediaInfo(douban_info=doubaninfo).to_dict() for doubaninfo in doubaninfos]
 
 
 @router.get("/{doubanid}", summary="查询豆瓣详情", response_model=schemas.MediaInfo)
